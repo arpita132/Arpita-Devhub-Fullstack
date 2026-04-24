@@ -1,47 +1,34 @@
-# Arpita's DevHub 🚀
+# Arpita's DevHub: Full-Stack Course Management
 
-A premium, full-stack course management platform built with **Spring Boot 3** and **Angular 17**. This project features a high-end "Electric Indigo" design system with glassmorphism UI, robust backend validation, and interactive user experiences.
+This is a professional-grade course management platform I built to explore the latest features of **Spring Boot 3** and **Angular 17**. Unlike standard CRUD apps, I focused heavily on the user experience and a modern "Electric Indigo" design aesthetic using glassmorphism.
 
-## ✨ Features
-- **Modern UI**: Custom Indigo Glassmorphism design system.
-- **Full CRUD**: Manage courses with real-time updates and celebratory confetti effects.
-- **Admin Command Center**: Centralized dashboard to monitor platform stats and user activity.
-- **Secure Authentication**: Built-in Sign-in, Sign-up, and OTP-based password reset functionality.
-- **Responsive Design**: Fully optimized for Desktop, Tablet, and Mobile devices.
+## Why I built this
+I wanted to create a platform that doesn't just manage data but feels responsive and alive. This project was a deep dive into secure authentication flows, complex routing in Angular, and building a centralized Admin Command Center to track real-time platform metrics.
 
-## 🛠️ Technology Stack
-- **Backend**: Java 17, Spring Boot 3, Spring Data JPA, H2 Database.
-- **Frontend**: Angular 17, TypeScript, CSS3 (Glassmorphism).
-- **Communication**: REST API with CORS configuration.
+## Key Features
+*   **Modern Design System**: A custom-built UI using CSS3 glassmorphism and a responsive grid layout.
+*   **Secure Auth Flow**: Complete login/register system with OTP-based password resets via Gmail SMTP.
+*   **Admin Insights**: A private dashboard to monitor course statuses (Live vs Draft) and track user login activity with timestamps.
+*   **Engagement**: Integrated interactive feedback like confetti effects for successful course creation.
+*   **Mobile Ready**: Fully responsive layout optimized for all screen sizes.
 
-## 🚀 Getting Started
+## Tech Stack
+*   **Frontend**: Angular 17, TypeScript, RxJS, CSS3.
+*   **Backend**: Java 17, Spring Boot 3, Hibernate, JPA.
+*   **Database**: H2 Database (for easy development/testing).
+*   **Security**: Spring Security with custom CORS and Auth Guards.
 
-### Prerequisites
-- Java 17 or higher
-- Node.js & npm (v18+)
-- Maven
+## Setup Instructions
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/Arpita-DevHub-FullStack.git
-   ```
+### Backend
+1. Navigate to `spring-boot-server`.
+2. Run `mvn spring-boot:run`.
+3. (Optional) Configure your Gmail App Password in `application.properties` for real-time OTPs.
 
-2. **Start the Backend**:
-   ```bash
-   cd spring-boot-server
-   mvn spring-boot:run
-   ```
-
-3. **Start the Frontend**:
-   ```bash
-   cd angular-17-client
-   npm install
-   npm start
-   ```
-
-## 🔒 Security
-The platform includes an Admin Auth Guard to protect sensitive data. For production use, please configure the Gmail SMTP settings in `application.properties` to enable real-time email verification.
+### Frontend
+1. Navigate to `angular-17-client`.
+2. Run `npm install` and then `npm start`.
+3. Open `http://localhost:4200` to view the app.
 
 ---
-Developed with excellence by **Arpita**.
+**Built with passion and excellence by Arpita.**
