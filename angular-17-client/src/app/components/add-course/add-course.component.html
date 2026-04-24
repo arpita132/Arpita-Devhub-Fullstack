@@ -1,0 +1,75 @@
+<div>
+  <div class="submit-form">
+    @if (!submitted) {
+    <div class="form-group">
+      <label for="title">Course Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        required
+        [(ngModel)]="course.title"
+        name="title"
+        [class.invalid]="errors.title"
+        placeholder="Enter course title..."
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        required
+        [(ngModel)]="course.description"
+        name="description"
+        [class.invalid]="errors.description"
+        placeholder="Briefly describe the course content..."
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input
+        type="text"
+        class="form-control"
+        id="category"
+        required
+        [(ngModel)]="course.category"
+        name="category"
+        [class.invalid]="errors.category"
+        placeholder="e.g. Programming, Design, Business..."
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="level">Difficulty Level</label>
+      <select
+        class="form-control"
+        id="level"
+        required
+        [(ngModel)]="course.level"
+        name="level"
+        [class.invalid]="errors.level"
+      >
+        <option value="" disabled selected>Select Level</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+    </div>
+
+    <button (click)="saveCourse()" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+      Create Course
+    </button>
+    } @else {
+    <div class="success-message">
+      <h2>🎉 Course Published!</h2>
+      <p>Your new course has been successfully added to the library.</p>
+      <button class="btn btn-primary" (click)="newCourse()" style="margin-top: 1.5rem;">
+        Add Another Course
+      </button>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="app-container">
+  <header class="main-header">
+    <div class="logo-section">
+      <div class="logo-icon">AD</div>
+      <span class="logo-text">Arpita's DevHub</span>
+    </div>
+    <nav class="main-nav">
+      <a routerLink="/courses" class="nav-link" routerLinkActive="active">View Courses</a>
+      <a routerLink="/add" class="nav-link" routerLinkActive="active">New Course</a>
+      <a routerLink="/admin" class="nav-link" routerLinkActive="active">Dashboard</a>
+    </nav>
+    <div class="user-actions">
+      <button *ngIf="!authService.isLoggedIn()" class="btn btn-outline" routerLink="/login">Sign In</button>
+      <button *ngIf="authService.isLoggedIn()" class="btn btn-outline" (click)="logout()">Sign Out</button>
+      <button class="btn btn-primary" routerLink="/courses">Get Started</button>
+    </div>
+  </header>
+
+  <main class="app-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="main-footer">
+    <p>&copy; 2026 Arpita's DevHub. All rights reserved.</p>
+  </footer>
+</div>

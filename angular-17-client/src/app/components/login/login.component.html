@@ -1,0 +1,68 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="logo-icon">AD</div>
+      <h2>Welcome Back</h2>
+      <p>Log in to Arpita's DevHub to manage your courses.</p>
+    </div>
+
+    <form
+      *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="form.email"
+          required
+          email
+          #email="ngModel"
+          [class.is-invalid]="f.submitted && email.errors"
+          placeholder="name@example.com"
+        />
+        <div class="invalid-feedback" *ngIf="f.submitted && email.errors">
+          <span *ngIf="email.errors['required']">Email is required</span>
+          <span *ngIf="email.errors['email']">Email must be a valid email address</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password / OTP</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+          [class.is-invalid]="f.submitted && password.errors"
+          placeholder="Enter your secret key"
+        />
+        <div class="invalid-feedback" *ngIf="f.submitted && password.errors">
+          <span *ngIf="password.errors['required']">Password is required</span>
+          <span *ngIf="password.errors['minlength']">Password must be at least 6 characters</span>
+        </div>
+      </div>
+
+      <div class="auth-actions">
+        <button class="btn btn-primary btn-block">Sign In</button>
+      </div>
+
+      <div class="form-group alert-container" *ngIf="f.submitted && isLoginFailed">
+        <div class="alert-danger">{{ errorMessage }}</div>
+      </div>
+    </form>
+
+    <div class="auth-footer">
+      <p>Don't have an account? <a routerLink="/register">Create one</a></p>
+      <a class="forgot-link" routerLink="/reset-password">Forgot password?</a>
+    </div>
+  </div>
+</div>

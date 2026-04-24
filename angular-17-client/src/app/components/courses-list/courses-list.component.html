@@ -1,0 +1,54 @@
+<div class="list-container">
+  <div class="search-section">
+    <div class="search-box">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search for courses..."
+        [(ngModel)]="title"
+        (keyup.enter)="searchTitle()"
+      />
+      <button class="btn btn-search" (click)="searchTitle()">
+        <svg xmlns="http://www.w3.org/2001/XMLSchema-instance" viewBox="0 0 24 24" width="20" height="20">
+          <path fill="none" d="M0 0h24v24H0z"/><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.132-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.275-1.467l.75-.658z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="list-section">
+      <div class="header-row">
+        <h3>Available Courses</h3>
+        <button class="btn btn-clear" (click)="removeAllCourses()" *ngIf="courses && courses.length > 0">
+          Clear Library
+        </button>
+      </div>
+
+      <div class="course-list">
+        @for (course of courses; track course.id; let i = $index) {
+        <div
+          class="course-item"
+          [class.active]="i == currentIndex"
+          (click)="setActiveCourse(course, i)"
+        >
+          <div class="course-info">
+            <span class="course-title">{{ course.title }}</span>
+            <span class="course-meta">{{ course.category }} • {{ course.level }}</span>
+          </div>
+          <div class="arrow">→</div>
+        </div>
+        } @empty {
+          <div class="empty-state">No courses found matching your criteria.</div>
+        }
+      </div>
+    </div>
+
+    <div class="details-section">
+      <app-course-details
+        [viewMode]="true"
+        [currentCourse]="currentCourse"
+      ></app-course-details>
+    </div>
+  </div>
+</div>

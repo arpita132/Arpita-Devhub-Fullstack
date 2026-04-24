@@ -1,0 +1,92 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="logo-icon">AD</div>
+      <h2>Create Account</h2>
+      <p>Join Arpita's DevHub to start building.</p>
+    </div>
+
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="username">Full Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          [(ngModel)]="form.username"
+          required
+          minlength="3"
+          #username="ngModel"
+          [class.is-invalid]="f.submitted && username.errors"
+          placeholder="Arpita Sharma"
+        />
+        <div class="invalid-feedback" *ngIf="f.submitted && username.errors">
+          <span *ngIf="username.errors['required']">Name is required</span>
+          <span *ngIf="username.errors['minlength']">Name must be at least 3 characters</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="form.email"
+          required
+          email
+          #email="ngModel"
+          [class.is-invalid]="f.submitted && email.errors"
+          placeholder="name@example.com"
+        />
+        <div class="invalid-feedback" *ngIf="f.submitted && email.errors">
+          <span *ngIf="email.errors['required']">Email is required</span>
+          <span *ngIf="email.errors['email']">Email must be a valid email address</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+          [class.is-invalid]="f.submitted && password.errors"
+          placeholder="Create a strong password"
+        />
+        <div class="invalid-feedback" *ngIf="f.submitted && password.errors">
+          <span *ngIf="password.errors['required']">Password is required</span>
+          <span *ngIf="password.errors['minlength']">Password must be at least 6 characters</span>
+        </div>
+      </div>
+
+      <div class="auth-actions">
+        <button class="btn btn-primary btn-block">Sign Up</button>
+      </div>
+
+      <div class="alert-danger" *ngIf="f.submitted && isSignUpFailed">
+        {{ errorMessage }}
+      </div>
+    </form>
+
+    <div class="success-message" *ngIf="isSuccessful">
+      <h3>🎉 Welcome Aboard!</h3>
+      <p>Your account has been created successfully. You can now log in.</p>
+      <button class="btn btn-primary btn-block" routerLink="/login" style="margin-top: 1.5rem;">Go to Login</button>
+    </div>
+
+    <div class="auth-footer" *ngIf="!isSuccessful">
+      <p>Already have an account? <a routerLink="/login">Sign In</a></p>
+    </div>
+  </div>
+</div>

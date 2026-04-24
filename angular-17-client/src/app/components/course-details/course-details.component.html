@@ -1,0 +1,112 @@
+@if (viewMode){
+  @if (currentCourse.id){
+  <div class="course-card-details">
+    <h3>{{ currentCourse.title }}</h3>
+    <div class="meta-info">
+      <span class="badge badge-info">{{ currentCourse.category }}</span>
+      <span class="badge badge-secondary">{{ currentCourse.level }}</span>
+    </div>
+    <div class="description-view">
+      <label><strong>Overview:</strong></label>
+      <p>{{ currentCourse.description }}</p>
+    </div>
+    <div class="status-view">
+      <label><strong>Status:</strong></label>
+      <span [class]="currentCourse.published ? 'status-published' : 'status-pending'">
+        {{ currentCourse.published ? "Published" : "Pending" }}
+      </span>
+    </div>
+
+    <button class="btn btn-primary" routerLink="/courses/{{ currentCourse.id }}" style="margin-top: 2rem; width: 100%;">
+      Edit Course Details
+    </button>
+  </div>
+  } @else {
+    <div class="empty-selection">
+      <div class="icon-placeholder">
+        <svg xmlns="http://www.w3.org/2001/XMLSchema-instance" viewBox="0 0 24 24" width="64" height="64" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z"/>
+        </svg>
+      </div>
+      <h4>Ready to learn?</h4>
+      <p>Select a course from the list on the left to see full details and management options.</p>
+    </div>
+  }
+} @else {
+  @if (currentCourse.id) {
+  <div class="edit-form-container">
+    <h4>Edit Course</h4>
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentCourse.title"
+          name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentCourse.description"
+          name="description"
+          rows="4"
+        ></textarea>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="form-group">
+          <label for="category">Category</label>
+          <input
+            type="text"
+            class="form-control"
+            id="category"
+            [(ngModel)]="currentCourse.category"
+            name="category"
+          />
+        </div>
+        <div class="form-group">
+          <label for="level">Difficulty Level</label>
+          <select class="form-control" id="level" [(ngModel)]="currentCourse.level" name="level">
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group status-row">
+        <label><strong>Current Status:</strong></label>
+        <span [class]="currentCourse.published ? 'status-published' : 'status-pending'">
+          {{ currentCourse.published ? "Published" : "Pending" }}
+        </span>
+      </div>
+    </form>
+
+    <div class="action-buttons">
+      @if (currentCourse.published) {
+      <button class="btn" style="background: rgba(245, 158, 11, 0.1); color: var(--warning); border: 1px solid var(--warning);" (click)="updatePublished(false)">
+        Unpublish
+      </button>
+      } @else {
+      <button class="btn" style="background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid #10b981;" (click)="updatePublished(true)">
+        Publish
+      </button>
+      }
+
+      <button class="btn" style="background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger);" (click)="deleteCourse()">
+        Delete
+      </button>
+
+      <button type="submit" class="btn btn-primary" (click)="updateCourse()">
+        Save Changes
+      </button>
+    </div>
+    <p class="message-info" *ngIf="message">{{ message }}</p>
+  </div>
+  } @else {<p class="error-msg">Course not found...</p>}
+}
