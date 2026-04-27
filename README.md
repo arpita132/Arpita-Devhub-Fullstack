@@ -29,6 +29,3 @@ I wanted to create a platform that doesn't just manage data but feels responsive
 1. Navigate to `angular-17-client`.
 2. Run `npm install` and then `npm start`.
 3. Open `http://localhost:4200` to view the app.
-
----
-**Built with passion and excellence by Arpita.**
